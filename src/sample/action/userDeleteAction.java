@@ -14,26 +14,55 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import sample.model.UserModel;
 import sample.model.CompleteModel;
-
-import sample.dao.UserDao;
+import sample.model.UserModel;
 
 
 public class userDeleteAction extends Action {
-	
-	public ActionForward execute(
-	        ActionMapping mapping,
-	        ActionForm form,
-	        HttpServletRequest request,
-	        HttpServletResponse response) throws Exception
-	    {
-	
-			public void registerUser(int id, String name, String email, String remarks) {
-		
-			UserDao dao = new UserDao();
-		
-			dao.register(id, name, email, remarks);
-			}
-	    }
+
+    public ActionForward execute(
+        ActionMapping mapping,
+        ActionForm form,
+        HttpServletRequest request,
+        HttpServletResponse response) throws Exception
+    {
+        UserModel userModel = (UserModel) model;
+
+        // データベースへの登録処理
+        DataSource ds = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        int id = userModel.getId();
+        String strSql = "DELETE FROM form WHERE id = ?";
+
+        try {
+        	//コンテキスト初期化
+        	Context ctx = new InitialContext();
+
+        	//データソースのlookup
+        	ds = (DataSource)ctx.lookup("java:comp/env/jdbc/mysql");
+
+        	//コネクションオブジェクト定義
+        	con = ds.getConnection();
+
+        	ps = con.prepareStatement(strSql);
+        	ps.setInt(1, id);
+        	ps.executeUpdate();
+
+        	CompleteModel complete = new CompleteModel();
+        	complete.setCompleteTitle("削除完了");
+        	complete.setCompleteMessage("削除完了しました");
+
+        	request.setAttribute("CompleteInfo", complete);
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            con.close();
+        }
+
+        request.getRequestDispatcher("/complete.jsp").forward(request, response);
+        return mapping.findForward("success");
+    }
 }

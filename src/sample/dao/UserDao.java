@@ -34,12 +34,7 @@ public class UserDao {
 	private static final String DELETESQL = "DELETE FROM user_list WHERE id = ?";
 
 
-    public ActionForward execute(
-        ActionMapping mapping,
-        ActionForm form,
-        HttpServletRequest request,
-        HttpServletResponse response) throws Exception
-    {
+
     	// 変数初期化
         DataSource ds = null;
         Connection con = null;
@@ -89,10 +84,7 @@ public class UserDao {
                 con.close();
             }
 
-            request.getRequestDispatcher("/list.jsp").forward(request, response);
-            return mapping.findForward("success");
 
-        }
 
     }
 }
