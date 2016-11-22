@@ -2,19 +2,14 @@ package sample.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
 
 import sample.model.ListModel2;
 
@@ -33,13 +28,6 @@ public class UserDao {
 	// SQLコマンドを作成(データ削除)
 	private static final String DELETESQL = "DELETE FROM user_list WHERE id = ?";
 
-
-    public ActionForward execute(
-        ActionMapping mapping,
-        ActionForm form,
-        HttpServletRequest request,
-        HttpServletResponse response) throws Exception
-    {
     	// 変数初期化
         DataSource ds = null;
         Connection con = null;
@@ -49,50 +37,82 @@ public class UserDao {
         String listSql = null;
         String deleteSql = null;
 
-        // コンテキスト初期化
-    	Context ctx = new InitialContext();
-
-    	// データソースのlookup
-    	ds = (DataSource)ctx.lookup("java:comp/env/jdbc/mysql");
-
-    	// コネクションオブジェクト定義
-    	con = ds.getConnection();
-
-    	// ステートメントの定義
-    	stmt = con.createStatement();
-
-
-
-
+        // 登録処理
     	public void register(int id, String name, String email, String remarks) throws SQLException {
 
-    		try {
+			// コンテキスト初期化
+	    	Context ctx = new InitialContext();
 
-            	// 問い合わせを実行してリザルトセットを取得
-            	rs = stmt.executeQuery(listSql);
+	    	// データソースのlookup
+	    	ds = (DataSource)ctx.lookup("java:comp/env/jdbc/mysql");
 
-            	// データベースから取得した値をモデルに設定
-            	List<ListModel2> list = new ArrayList<ListModel2>();
-            	while(rs.next()) {
-            		ListModel2 listform2 = new ListModel2();
-            		listform2.setId(rs.getInt("id"));
-            		listform2.setName(rs.getString("name"));
-            		list.add(listform2);
-            	}
+	    	// コネクションオブジェクト定義
+	    	con = ds.getConnection();
 
-            	// リクエストにListFormInfoを設定（jsp側で使用）
-            	request.setAttribute("ListFormInfo", list);
+	    	// ステートメントの定義
+	    	stmt = con.createStatement();
 
-            } catch (Exception e) {
-                throw e;
-            } finally {
-                con.close();
-            }
+			try {
 
-            request.getRequestDispatcher("/list.jsp").forward(request, response);
-            return mapping.findForward("success");
+	        	// 問い合わせを実行してリザルトセットを取得
+	        	rs = stmt.executeQuery(REGISTERSQL);
 
+	        	// データベースから取得した値をモデルに設定
+	        	List<ListModel2> list = new ArrayList<ListModel2>();
+	        	while(rs.next()) {
+	        		ListModel2 listform2 = new ListModel2();
+	        		listform2.setId(rs.getInt("id"));
+	        		listform2.setName(rs.getString("name"));
+	        		list.add(listform2);
+	        	}
+
+	        	// リクエストにListFormInfoを設定（jsp側で使用）
+	        	request.setAttribute("ListFormInfo", list);
+
+	        } catch (Exception e) {
+	            throw e;
+	        } finally {
+	            con.close();
         }
+
+
+		// 一覧表示処理
+		public void list(int id, String name, String email, String remarks) throws SQLExceotion {
+			// コンテキスト初期化
+	    	Context ctx = new InitialContext();
+
+	    	// データソースのlookup
+	    	ds = (DataSource)ctx.lookup("java:comp/env/jdbc/mysql");
+
+	    	// コネクションオブジェクト定義
+	    	con = ds.getConnection();
+
+	    	// ステートメントの定義
+	    	stmt = con.createStatement();
+
+			try {
+
+	        	// 問い合わせを実行してリザルトセットを取得
+	        	rs = stmt.executeQuery(LISTSQL);
+
+	        	// データベースから取得した値をモデルに設定
+	        	List<ListModel2> list = new ArrayList<ListModel2>();
+	        	while(rs.next()) {
+	        		ListModel2 listform2 = new ListModel2();
+	        		listform2.setId(rs.getInt("id"));
+	        		listform2.setName(rs.getString("name"));
+	        		list.add(listform2);
+	        	}
+
+	        	// リクエストにListFormInfoを設定（jsp側で使用）
+	        	request.setAttribute("ListFormInfo", list);
+
+	        } catch (Exception e) {
+	            throw e;
+	        } finally {
+	            con.close();
+		}
+
 
     }
 }
