@@ -52,7 +52,7 @@ public class UpdateViewAction extends Action {
         	stmt = con.createStatement();
 
         	//SQLコマンドを作成
-        	strSql = "SELECT id,name,email,remarks FROM customers_list";
+        	strSql = "SELECT id,name,email,remarks FROM user_list";
 
         	//問い合わせを実行してリザルトセットを取得
         	rs = stmt.executeQuery(strSql);
