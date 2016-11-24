@@ -15,10 +15,11 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import sample.form.UpdateForm;
+import sample.dao.UserDao;
+import sample.form.RegisterForm;
 import sample.model.CompleteModel;
 
-public class UpdateAction extends Action {
+public class userCreateAction extends Action {
 
     public ActionForward execute(
         ActionMapping mapping,
@@ -26,20 +27,16 @@ public class UpdateAction extends Action {
         HttpServletRequest request,
         HttpServletResponse response) throws Exception {
 
-        UpdateForm updateForm = (UpdateForm) form;
+        RegisterForm registerForm = (RegisterForm) form;
 
         // データベースへの登録処理
         DataSource ds = null;
         Connection con = null;
         PreparedStatement ps = null;
 
+        int id = registerForm.getId();
 
-        int id = updateForm.getId();
-        System.out.println("id = " + id);
-//        String title = updateForm.getTitle();
-
-        //SQLコマンドを作成
-        String strSql = "UPDATE user_list SET name = ? email = ? remarks = ? WHERE id = ?";
+        String strSql = "INSERT INTO user_list(ID, NAME, EMAIL, REMARKS) VALUES(?,?,?,?)";
 
         try {
 
@@ -54,15 +51,23 @@ public class UpdateAction extends Action {
 
         	//SQLコマンドを作成
         	ps = con.prepareStatement(strSql);
-        	ps.setString(1, updateForm.getName());
-        	ps.setInt(2, id);
+        	ps.setInt(1, id);
+        	ps.setString(2, registerForm.getName());
+        	ps.setString(3, registerForm.getEmail());
+        	ps.setString(4, registerForm.getRemarks());
         	ps.executeUpdate();
 
         	CompleteModel complete = new CompleteModel();
-        	complete.setCompleteTitle("更新完了");
-        	complete.setCompleteMessage("更新完了しました");
+        	complete.setCompleteTitle("登録完了");
+        	complete.setCompleteMessage("登録完了しました");
 
         	request.setAttribute("CompleteInfo", complete);
+
+
+
+
+        	UserDao dao = new UserDao();
+        	dao.create(id, strSql, strSql, strSql, mapping, form, request, response);
 
         } catch (Exception e) {
             throw e;
@@ -73,6 +78,5 @@ public class UpdateAction extends Action {
         request.getRequestDispatcher("/complete.jsp").forward(request, response);
         return mapping.findForward("success");
     }
-
 }
 

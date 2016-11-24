@@ -44,7 +44,7 @@
 
 		</html:select>
 
-		<p><html:text property="title" />
+		<p><html:text property="name" />
 		<html:submit property="submit" value="更新" />
 
 	</html:form>

@@ -13,7 +13,7 @@
 </head>
 
 <body>
-	<html:form action="register.do" method="post">
+	<html:form action="create.do" method="post">
 		<h1>登録フォーム</h1>
 		<table>
 			<tr>

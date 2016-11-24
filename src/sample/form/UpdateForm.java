@@ -10,7 +10,9 @@ import org.apache.struts.action.ActionMapping;
 public class UpdateForm extends ActionForm {
 
 	private int id;
-	private String title = null;
+	private String name = null;
+	private String email = null;
+	private String remarks = null;
 
 	public int getId() {
 		return id;
@@ -20,12 +22,28 @@ public class UpdateForm extends ActionForm {
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 
 	public void reset(ActionMapping mapping, HttpServletRequest request) {

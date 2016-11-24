@@ -11,7 +11,9 @@ import sample.model.ListModel2;
 public class ListForm extends ActionForm {
 
 	private static int id;
-	private static String title = null;
+	private String name = null;
+	private String email = null;
+	private String remarks = null;
 	private static List<ListModel2> list_info = null;
 
 
@@ -31,11 +33,28 @@ public class ListForm extends ActionForm {
 		ListForm.id = id;
 	}
 
-	public static String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
 
-	public static void setTitle(String title) {
-		ListForm.title = title;
+	public void setName(String name) {
+		this.name = name;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+
 }

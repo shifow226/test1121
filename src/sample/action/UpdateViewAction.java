@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.naming.Context;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -76,19 +74,19 @@ public class UpdateViewAction extends Action {
 //        	menuPulldown.put("id", rs.getInt("id"));
 //        	request.setAttribute("menu.pulldown", menuPulldown);
 
-        	LinkedHashMap<String, String> idMap = new LinkedHashMap<String, String>();
-//        	idMap.put("id", "id");
-        	for (ListModel2 value: list) {
-        		idMap.put(
-        				String.valueOf(
-        						value.getId()
-        					),
-        				String.valueOf(
-        						value.getId()
-        				));
-        	}
-
-        	BeanUtils.setProperty(form, "idMap", idMap);
+//        	LinkedHashMap<String, String> idMap = new LinkedHashMap<String, String>();
+////        	idMap.put("id", "id");
+//        	for (ListModel2 value: list) {
+//        		idMap.put(
+//        				String.valueOf(
+//        						value.getId()
+//        					),
+//        				String.valueOf(
+//        						value.getId()
+//        				));
+//        	}
+//
+//        	BeanUtils.setProperty(form, "idMap", idMap);
 
 
         } catch (Exception e) {

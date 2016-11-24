@@ -1,6 +1,13 @@
 package sample.model;
 
-public class UserModel {
+import java.io.UnsupportedEncodingException;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMapping;
+
+public class UserModel extends ActionForm {
 
 	private int Id;
 	private String Name = null;
@@ -38,5 +45,14 @@ public class UserModel {
 	public void setRemarks(String remarks) {
 		Remarks = remarks;
 	}
+
+	public void reset(ActionMapping mapping, HttpServletRequest request) {
+        super.reset(mapping, request);
+        try {
+            request.setCharacterEncoding("utf-8");
+        } catch(UnsupportedEncodingException ex) {
+            ex.printStackTrace();
+        }
+    }
 
 }

@@ -19,8 +19,7 @@ import org.apache.struts.action.ActionMapping;
 
 import sample.model.ListModel2;
 
-
-public class ListAction extends Action {
+public class userListAction extends Action {
 
     public ActionForward execute(
         ActionMapping mapping,
@@ -34,7 +33,6 @@ public class ListAction extends Action {
         Statement stmt = null;
         ResultSet rs = null;
         String strSql = null;
-
 
         try {
         	//コンテキスト初期化

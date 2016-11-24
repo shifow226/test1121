@@ -20,9 +20,9 @@ import org.apache.struts.action.ActionMapping;
 import sample.model.ListModel2;
 
 
-public class ListAction extends Action {
+public class userUpdateViewAction extends Action {
 
-    public ActionForward execute(
+	public ActionForward execute(
         ActionMapping mapping,
         ActionForm form,
         HttpServletRequest request,
@@ -35,7 +35,7 @@ public class ListAction extends Action {
         ResultSet rs = null;
         String strSql = null;
 
-
+//System.out.println("aaa");
         try {
         	//コンテキスト初期化
         	Context ctx = new InitialContext();
@@ -61,11 +61,14 @@ public class ListAction extends Action {
         		ListModel2 listform2 = new ListModel2();
         		listform2.setId(rs.getInt("id"));
         		listform2.setName(rs.getString("name"));
+        		listform2.setEmail(rs.getString("email"));
+        		listform2.setRemarks(rs.getString("remarks"));
         		list.add(listform2);
         	}
 
         	// リクエストにListFormInfoを設定（jsp側で使用）
         	request.setAttribute("ListFormInfo", list);
+
 
         } catch (Exception e) {
             throw e;
@@ -73,7 +76,7 @@ public class ListAction extends Action {
             con.close();
         }
 
-        request.getRequestDispatcher("/list.jsp").forward(request, response);
+        request.getRequestDispatcher("/update.jsp").forward(request, response);
         return mapping.findForward("success");
 
     }

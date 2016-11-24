@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-//import org.apache.catalina.Context;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -18,7 +17,7 @@ import org.apache.struts.action.ActionMapping;
 import sample.form.UpdateForm;
 import sample.model.CompleteModel;
 
-public class UpdateAction extends Action {
+public class userUpdateAction extends Action {
 
     public ActionForward execute(
         ActionMapping mapping,
@@ -28,18 +27,16 @@ public class UpdateAction extends Action {
 
         UpdateForm updateForm = (UpdateForm) form;
 
+
+//        UserModel userModel = (UserModel) model;
+
         // データベースへの登録処理
         DataSource ds = null;
         Connection con = null;
         PreparedStatement ps = null;
 
-
-        int id = updateForm.getId();
-        System.out.println("id = " + id);
-//        String title = updateForm.getTitle();
-
         //SQLコマンドを作成
-        String strSql = "UPDATE user_list SET name = ? email = ? remarks = ? WHERE id = ?";
+        String strSql = "UPDATE user_list SET name = ? email = ? remarks = ?  WHERE id = ?";
 
         try {
 
@@ -55,7 +52,7 @@ public class UpdateAction extends Action {
         	//SQLコマンドを作成
         	ps = con.prepareStatement(strSql);
         	ps.setString(1, updateForm.getName());
-        	ps.setInt(2, id);
+        	ps.setInt(2, updateForm.getId());
         	ps.executeUpdate();
 
         	CompleteModel complete = new CompleteModel();
