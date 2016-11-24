@@ -9,12 +9,7 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-
-import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionForward;
-import org.apache.struts.action.ActionMapping;
 
 import sample.model.ListModel2;
 
@@ -44,22 +39,19 @@ public class UserDao {
         String listSql = null;
         String deleteSql = null;
 
-        // コンテキスト初期化
-    	Context ctx = new InitialContext();
+    	public void register(int id, String name, String email, String remarks, HttpServletRequest request) throws Exception {
 
-    	// データソースのlookup
-    	ds = (DataSource)ctx.lookup("java:comp/env/jdbc/mysql");
+            // コンテキスト初期化
+        	Context ctx = new InitialContext();
 
-    	// コネクションオブジェクト定義
-    	con = ds.getConnection();
+        	// データソースのlookup
+        	ds = (DataSource)ctx.lookup("java:comp/env/jdbc/mysql");
 
-    	// ステートメントの定義
-    	stmt = con.createStatement();
+        	// コネクションオブジェクト定義
+        	con = ds.getConnection();
 
-
-
-
-    	public void register(int id, String name, String email, String remarks) throws SQLException {
+        	// ステートメントの定義
+        	stmt = con.createStatement();
 
     		try {
 
