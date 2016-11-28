@@ -5,7 +5,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 
-<%@ page import="java.util.List, sample.model.ListModel2" %>
+<%@ page import="java.util.List, sample.model.UserModel" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -24,11 +24,12 @@
 				<th>ID</th>
 				<th>名前</th>
 				<th>更新</th>
+				<th>削除</th>
 			</tr>
 			<%
-				List<ListModel2> list =(List<ListModel2>)request.getAttribute("ListFormInfo");
+				List<UserModel> list =(List<UserModel>)request.getAttribute("ListFormInfo");
 				for(int i = 0; i < list.size(); i++) {
-					ListModel2 listform = list.get(i);
+					UserModel listform = list.get(i);
 			%>
 
 				<tr>
@@ -36,8 +37,12 @@
 					<td><%= listform.getName() %></td>
 					<td>
 						<html:hidden property="id" value="<%= String.valueOf(listform.getId()) %>" />
-						<html:submit property="submit" value="更新" />
-						</td>
+						<a href="updateview.do">更新</a>
+					</td>
+					<td>
+						<html:hidden property="id" value="<%= String.valueOf(listform.getId()) %>" />
+						<html:submit property="submit" value="削除" />
+					</td>
 				</tr>
 
 			<%
@@ -47,6 +52,6 @@
 		</table>
 	</html:form>
 
-	<p><a href="top.jsp">TOPへ戻る</a></p>
+	<p><a href="index.jsp">TOPへ戻る</a></p>
 
 </body>

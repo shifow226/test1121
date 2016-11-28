@@ -6,33 +6,25 @@
 <struts-config>
 
 	<form-beans>
-        <form-bean name="registerForm" type="sample.form.RegisterForm" />
-
-        <form-bean name="listForm" type="sample.form.ListForm" />
-
-        <form-bean name="updateViewForm" type="sample.form.UpdateViewForm" />
-
-		<form-bean name="updateForm" type="sample.form.UpdateForm">
+		<form-bean name="model" type="sample.model.UserModel">
 			 <form-property name="name" type="java.lang.String" initial="" />
 			 <form-property name="email" type="java.lang.String" initial="" />
 			 <form-property name="remarks" type="java.lang.String" initial="" />
 		</form-bean>
-
-        <form-bean name="deleteForm" type="sample.form.DeleteForm" />
     </form-beans>
 
     <action-mappings>
-        <action path="/create" name="registerForm" type="sample.action.userCreateAction" />
+        <action path="/create" name="model" type="sample.action.userCreateAction" />
 
-		<action path="/list" name="listForm" type="sample.action.userListAction" />
+		<action path="/list" name="model" type="sample.action.userListAction" />
 
-		<action path="/update" name="updateForm" type="sample.action.userUpdateAction" />
+		<action path="/updateview" name="model" type="sample.action.userUpdateViewAction" />
 
-		<action path="/updateview" name="updateViewForm" type="sample.action.userUpdateViewAction" />
+		<action path="/update" name="model" type="sample.action.userUpdateAction" />
 
-		<action path="/delete" name="deleteForm" type="sample.action.userDeleteAction" />
+		<action path="/delete" name="model" type="sample.action.userDeleteAction" />
 
-		<action path="/complete" name="deleteForm" type="sample.action.userDeleteAction" />
+		<action path="/complete" name="model" type="sample.action.userDeleteAction" />
     </action-mappings>
 
 </struts-config>

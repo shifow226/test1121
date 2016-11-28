@@ -11,9 +11,7 @@
 
 	<h1>メニュー</h1>
 
-	<p><a href="register.jsp">データ登録</a></p>
-
-	<p><a href="updateview.do">データ更新</a></p>
+	<p><a href="UserCreate.jsp">データ登録</a></p>
 
 	<p><a href="list.do">データ一覧</a></p>
 

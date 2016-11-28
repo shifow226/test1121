@@ -27,7 +27,7 @@
 
 			<p><%= comp.getCompleteMessage() %></p>
 
-		<p><a href="list.do">一覧へ戻る</a></p>
+		<p><a href="index.jsp">TOPへ戻る</a></p>
 	</html:form>
 </body>
 </html>

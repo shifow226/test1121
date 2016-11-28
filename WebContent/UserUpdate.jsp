@@ -8,7 +8,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 
-<%@ page import="java.util.List, sample.model.ListModel2" %>
+<%@ page import="java.util.List, sample.model.UserModel" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -29,9 +29,9 @@
 				<td>
 					<html:select property="id" >
 						<%
-							List<ListModel2> list =(List<ListModel2>)request.getAttribute("ListFormInfo");
+							List<UserModel> list =(List<UserModel>)request.getAttribute("ListFormInfo");
 							for(int i = 0; i < list.size(); i++) {
-								ListModel2 listform = list.get(i);
+								UserModel listform = list.get(i);
 						%>
 						<html:option value="<%= String.valueOf(listform.getId()) %>"><%= String.valueOf(listform.getId()) %></html:option>
 
@@ -55,9 +55,8 @@
 				<td><html:text property="remarks" /></td>
 			</tr>
 		</table>
+		<html:submit property="submit" value="更新" />
 	</html:form>
-
-	<html:submit property="submit" value="更新" />
 
 	<p><a href="index.jsp">TOPへ戻る</a></p>
 

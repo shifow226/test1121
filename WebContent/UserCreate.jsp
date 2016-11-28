@@ -31,5 +31,5 @@
 		</table>
 		<html:submit value="登録" />
 	</html:form>
-	<p><a href="top.jsp">TOPへ戻る</a></p>
+	<p><a href="index.jsp">TOPへ戻る</a></p>
 </body>
