@@ -24,6 +24,8 @@
 
 		<action path="/delete" name="model" type="sample.action.userDeleteAction" />
 
+		<action path="/show" name="model" type="sample.action.userShowAction" />
+
 		<action path="/complete" name="model" type="sample.action.userDeleteAction" />
     </action-mappings>
 

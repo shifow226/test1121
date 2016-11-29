@@ -32,27 +32,37 @@
 				for(int i = 0; i < list.size(); i++) {
 					UserModel listform = list.get(i);
 			%>
-			<html:form action="delete.do" method="post">
+
 				<tr>
 					<td><%= listform.getId() %></td>
 					<td><%= listform.getName() %></td>
 					<td>
-						<html:hidden property="id" value="<%= String.valueOf(listform.getId()) %>" />
-						<a href="updateview.do">更新</a>
+						<html:form action="updateview.do" method="post">
+							<html:hidden property="id" value="<%= String.valueOf(listform.getId()) %>" />
+							<html:submit property="submit" value="更新" />
+						</html:form>
 					</td>
+
 					<td>
-						<html:hidden property="id" value="66666" />
-						<a href="delete.do">削除</a>
-						<html:submit property="submit" value="削除" />
+						<html:form action="delete.do" method="post">
+							<html:hidden property="id" value="<%= String.valueOf(listform.getId()) %>" />
+							<html:submit property="submit" value="削除" />
+						</html:form>
 					</td>
-					<td><a href="">詳細</a></td>
+
+					<td>
+						<html:form action="show.do" method="post">
+							<html:hidden property="id" value="<%= String.valueOf(listform.getId()) %>" />
+							<html:submit property="submit" value="詳細" />
+						</html:form>
+					</td>
+					<!-- <td><a href="">詳細</a></td> -->
 				</tr>
-			</html:form>
+
 			<%
 				}
 			%>
 		</table>
-
 
 	<p><a href="index.jsp">TOPへ戻る</a></p>
 

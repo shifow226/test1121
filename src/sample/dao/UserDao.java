@@ -141,6 +141,8 @@ public class UserDao {
 
         try {
 
+//        	String id = request.getParameter("id");
+
         	// SQLコマンドを作成
         	ps = con.prepareStatement(UPDATESQL);
         	ps.setString(1, user.getName());
@@ -197,4 +199,61 @@ public class UserDao {
             con.close();
         }
  	}
+
+
+
+
+
+
+
+ 	// データ詳細取得処理
+  	public void show (
+  			UserModel user,
+  			ActionMapping mapping,
+  	        HttpServletRequest request,
+  	        HttpServletResponse response) throws Exception {
+
+  		// コンテキスト初期化
+     	Context ctx = new InitialContext();
+
+     	// データソースのlookup
+     	ds = (DataSource)ctx.lookup("java:comp/env/jdbc/mysql");
+
+     	// コネクションオブジェクト定義
+     	con = ds.getConnection();
+
+     	// ステートメントの定義
+     	stmt = con.createStatement();
+
+ 		try {
+
+         	// 問い合わせを実行してリザルトセットを取得
+         	rs = stmt.executeQuery(LISTSQL);
+
+         	// データベースから取得した値をモデルに設定
+         	List<UserModel> list = new ArrayList<UserModel>();
+         	while(rs.next()) {
+         		UserModel listform2 = new UserModel();
+         		listform2.setId(rs.getInt("id"));
+         		listform2.setName(rs.getString("name"));
+         		listform2.setEmail(rs.getString("email"));
+         		listform2.setRemarks(rs.getString("remarks"));
+         		list.add(listform2);
+         	}
+
+         	String id = request.getParameter("id");
+         	String name = request.getParameter("name");
+         	String email = request.getParameter("email");
+         	String remarks = request.getParameter("remarks");
+
+         	// リクエストにListFormInfoを設定（jsp側で使用）
+         	request.setAttribute("ListFormInfo", list);
+
+         } catch (Exception e) {
+             throw e;
+         } finally {
+             con.close();
+         }
+  	}
+
 }

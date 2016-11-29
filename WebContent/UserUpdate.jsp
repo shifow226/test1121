@@ -26,21 +26,7 @@
 		<table>
 			<tr>
 				<th>ID</th>
-				<td>
-					<html:select property="id" >
-						<%
-							List<UserModel> list =(List<UserModel>)request.getAttribute("ListFormInfo");
-							for(int i = 0; i < list.size(); i++) {
-								UserModel listform = list.get(i);
-						%>
-						<html:option value="<%= String.valueOf(listform.getId()) %>"><%= String.valueOf(listform.getId()) %></html:option>
-
-						<%
-							}
-						%>
-
-					</html:select>
-				</td>
+				<td><%= request.getParameter("id") %></td>
 			</tr>
 			<tr>
 				<th>名前</th>
