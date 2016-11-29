@@ -18,7 +18,7 @@
 
 	<h1>登録情報一覧</h1>
 
-	<html:form action="delete.do" method="post">
+
 		<table border =1>
 			<tr>
 				<th>ID</th>
@@ -30,7 +30,7 @@
 				for(int i = 0; i < list.size(); i++) {
 					UserModel listform = list.get(i);
 			%>
-
+			<html:form action="delete.do" method="post">
 				<tr>
 					<td><%= listform.getId() %></td>
 					<td><%= listform.getName() %></td>
@@ -39,13 +39,12 @@
 						<html:submit property="submit" value="削除" />
 					</td>
 				</tr>
-
+			</html:form>
 			<%
 				}
 			%>
-
 		</table>
-	</html:form>
+
 
 	<p><a href="index.jsp">TOPへ戻る</a></p>
 

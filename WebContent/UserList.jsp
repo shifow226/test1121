@@ -18,20 +18,21 @@
 
 	<h1>登録情報一覧</h1>
 
-	<html:form action="delete.do" method="post">
+
 		<table border =1>
 			<tr>
 				<th>ID</th>
 				<th>名前</th>
 				<th>更新</th>
 				<th>削除</th>
+				<th>詳細</th>
 			</tr>
 			<%
 				List<UserModel> list =(List<UserModel>)request.getAttribute("ListFormInfo");
 				for(int i = 0; i < list.size(); i++) {
 					UserModel listform = list.get(i);
 			%>
-
+			<html:form action="delete.do" method="post">
 				<tr>
 					<td><%= listform.getId() %></td>
 					<td><%= listform.getName() %></td>
@@ -40,17 +41,18 @@
 						<a href="updateview.do">更新</a>
 					</td>
 					<td>
-						<html:hidden property="id" value="<%= String.valueOf(listform.getId()) %>" />
+						<html:hidden property="id" value="66666" />
+						<a href="delete.do">削除</a>
 						<html:submit property="submit" value="削除" />
 					</td>
+					<td><a href="">詳細</a></td>
 				</tr>
-
+			</html:form>
 			<%
 				}
 			%>
-
 		</table>
-	</html:form>
+
 
 	<p><a href="index.jsp">TOPへ戻る</a></p>
 
