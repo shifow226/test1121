@@ -25,31 +25,25 @@
 	<html:form action="show.do" method="post">
 		<table>
 
-			<%
-				List<UserModel> list =(List<UserModel>)request.getAttribute("ListFormInfo");
-				for(int i = 0; i < list.size(); i++) {
-					UserModel listform = list.get(i);
-			%>
+
 			<tr>
 				<th>ID</th>
-				<td><%= String.valueOf(listform.getId()) %></td>
+				<td><%= request.getParameter("id") %></td>
 			</tr>
 			<tr>
 				<th>名前</th>
-				<td><%= listform.getName() %></td>
+				<td><%= request.getParameter("name") %></td>
 			</tr>
 			<tr>
 				<th>E-mail</th>
-				<td><%= listform.getEmail() %></td>
+				<td><%= request.getParameter("email") %></td>
 			</tr>
 			<tr>
 				<th>備考</th>
-				<td><%= listform.getRemarks() %></td>
+				<td><%= request.getParameter("remarks") %></td>
 			</tr>
 
-			<%
-				}
-			%>
+
 		</table>
 
 		<html:form action="update.do" method="post">

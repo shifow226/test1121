@@ -22,7 +22,8 @@ public class userUpdateViewAction extends Action {
         HttpServletResponse response) throws Exception {
 
 			UserDao dao = new UserDao();
-	    	UserModel user = new UserModel();
+//	    	UserModel user = new UserModel();
+	    	UserModel user = (UserModel) form;
 			dao.list(user, mapping, request, response);
 
         request.getRequestDispatcher("/UserUpdate.jsp").forward(request, response);

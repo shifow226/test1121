@@ -32,6 +32,9 @@ public class UserDao {
  	// SQLコマンドを作成(データ削除)
  	private static final String DELETESQL = "DELETE FROM user_list WHERE id = ?";
 
+ 	// SQLコマンドを作成(データ取得 IDが条件)
+  	private static final String SHOWSQL = "SELECT name,email,remarks FROM user_list WHERE id = ?";
+
 	// 変数初期化
     DataSource ds = null;
     Connection con = null;
@@ -110,6 +113,8 @@ public class UserDao {
         		UserModel listform2 = new UserModel();
         		listform2.setId(rs.getInt("id"));
         		listform2.setName(rs.getString("name"));
+        		listform2.setEmail(rs.getString("email"));
+        		listform2.setRemarks(rs.getString("remarks"));
         		list.add(listform2);
         	}
 
@@ -200,12 +205,6 @@ public class UserDao {
         }
  	}
 
-
-
-
-
-
-
  	// データ詳細取得処理
   	public void show (
   			UserModel user,
@@ -247,7 +246,7 @@ public class UserDao {
          	String remarks = request.getParameter("remarks");
 
          	// リクエストにListFormInfoを設定（jsp側で使用）
-         	request.setAttribute("ListFormInfo", list);
+         	request.setAttribute("UserShowInfo", list);
 
          } catch (Exception e) {
              throw e;

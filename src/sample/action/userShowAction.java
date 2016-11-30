@@ -22,7 +22,23 @@ public class userShowAction extends Action {
 
 	    	UserDao dao = new UserDao();
 	    	UserModel user = (UserModel) form;
-			dao.show(user, mapping, request, response);
+
+
+
+//	    	request.setAttribute("name", name);
+//
+//			HttpSession session = request.getSession();
+//			session.setAttribute("name", name);
+
+//	    	request.setAttribute("name", name);
+//	    	//HttpSessionインタフェースのオブジェクトを取得
+//	        HttpSession session = request.getSession();
+//	        //useridデータをsessionスコープで保存
+//	        session.setAttribute("user", user);
+
+
+
+	        dao.show(user, mapping, request, response);
 
         request.getRequestDispatcher("/UserShow.jsp").forward(request, response);
         return mapping.findForward("success");

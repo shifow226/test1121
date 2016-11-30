@@ -35,7 +35,7 @@ public class UserModel extends ActionForm {
 	}
 
 	public void setEmail(String email) {
-		email = Email;
+		Email = email;
 	}
 
 	public String getRemarks() {

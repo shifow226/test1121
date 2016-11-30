@@ -23,6 +23,8 @@
 			<tr>
 				<th>ID</th>
 				<th>名前</th>
+				<th>E-mail</th>
+				<th>備考</th>
 				<th>更新</th>
 				<th>削除</th>
 				<th>詳細</th>
@@ -36,6 +38,8 @@
 				<tr>
 					<td><%= listform.getId() %></td>
 					<td><%= listform.getName() %></td>
+					<td><%= listform.getEmail() %></td>
+					<td><%= listform.getRemarks() %></td>
 					<td>
 						<html:form action="updateview.do" method="post">
 							<html:hidden property="id" value="<%= String.valueOf(listform.getId()) %>" />
@@ -53,6 +57,9 @@
 					<td>
 						<html:form action="show.do" method="post">
 							<html:hidden property="id" value="<%= String.valueOf(listform.getId()) %>" />
+							<html:hidden property="name" value="<%= String.valueOf(listform.getName()) %>" />
+							<html:hidden property="email" value="<%= String.valueOf(listform.getEmail()) %>" />
+							<html:hidden property="remarks" value="<%= String.valueOf(listform.getRemarks()) %>" />
 							<html:submit property="submit" value="詳細" />
 						</html:form>
 					</td>
