@@ -26,33 +26,28 @@
 		<table>
 
 			<%
-				List<UserModel> list =(List<UserModel>)request.getAttribute("ListFormInfo");
-				for(int i = 0; i < list.size(); i++) {
-					UserModel listform = list.get(i);
+				UserModel userShowInfo =(UserModel) request.getAttribute("UserShowInfo");
 			%>
 			<tr>
 				<th>ID</th>
-				<td><%= String.valueOf(listform.getId()) %></td>
+				<td><%= String.valueOf(userShowInfo.getId()) %></td>
 			</tr>
 			<tr>
 				<th>名前</th>
-				<td><%= listform.getName() %></td>
+				<td><%= userShowInfo.getName() %></td>
 			</tr>
 			<tr>
 				<th>E-mail</th>
-				<td><%= listform.getEmail() %></td>
+				<td><%= userShowInfo.getEmail() %></td>
 			</tr>
 			<tr>
 				<th>備考</th>
-				<td><%= listform.getRemarks() %></td>
+				<td><%= userShowInfo.getRemarks() %></td>
 			</tr>
 
-			<%
-				}
-			%>
 		</table>
 
-		<html:form action="update.do" method="post">
+		<html:form action="updateview.do" method="post">
 			<html:submit property="submit" value="更新" />
 		</html:form>
 

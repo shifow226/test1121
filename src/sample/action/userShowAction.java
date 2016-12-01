@@ -22,7 +22,7 @@ public class userShowAction extends Action {
 
 	    	UserDao dao = new UserDao();
 	    	UserModel user = (UserModel) form;
-			dao.show(user, mapping, request, response);
+			user = dao.show(user, mapping, form, request, response);
 
         request.getRequestDispatcher("/UserShow.jsp").forward(request, response);
         return mapping.findForward("success");
